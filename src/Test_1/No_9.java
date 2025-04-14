@@ -1,3 +1,5 @@
+package Test_1;
+
 public class No_9 {
     public static void main(String[] args) {
         // 1번째 FOR 문에서 1단부터 3단까지 돌림

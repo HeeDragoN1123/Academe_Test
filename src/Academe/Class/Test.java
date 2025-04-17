@@ -36,6 +36,8 @@ public class Test {
         char grade = a.getGrade(); //90점이상은 A .. 80점이상은 B
         System.out.println(grade);
 
+        Student d = new Student(4 , "이영희", 50, 60 ,70);
+
 
 
     }

@@ -21,5 +21,12 @@ public class Array_7 {
             }
         }
 
+
+        for(int i =0; i<c.length; i++){
+            for(int j= 0; j<c[i].length; j++){
+                System.out.println("c 요소 출력 " + c[i][j]);
+            }
+        }
+
     }
 }

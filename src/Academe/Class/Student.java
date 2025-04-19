@@ -44,7 +44,7 @@ public class Student {
 
         //기본생성자
         public Student(){
-                num =  0 ;
+
         }
 
         //

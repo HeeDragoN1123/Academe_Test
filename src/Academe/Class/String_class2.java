@@ -22,23 +22,28 @@ public class String_class2 {
         // 월은 1~12 범위여야 한다.
         // 일은 1~31 범위여야 한다.
 
-
+        //주민번호가 14글자인지 확인
         if (id.length() != 14) {
             System.out.print("입력한 주민번호가 14글자가 아닙니다.");
             return;
+            // - 가 있는지 확인
         } else if (id.charAt(6) != '-') {
             System.out.print("7번째 글자가 -가 아닙니다.");
             return;
+            //8번쨰 글자 젠더코드 검사
         } else if (genderCode != '1' && genderCode != '2' && genderCode != '3' && genderCode != '4') {
                 System.out.print("8번째 글자(젠더코드) 가 1또는 2또는 3또는 4가 아닙니다.");
                 return;
+                //주민등록번호 입력시 월 확인
             } else if (month < 1 || month > 12) {
                 System.out.print("주민등록번호가 1~12월이 아닙니다.");
                 return;
+                // 주민등록 번호 일 확인
             } else if (day < 1 || day > 31) {
                 System.out.print("주민등록번호가 1~31일이 아닙니다.");
                 return;
             }
+        // - 제외한 나머지 숫자가 숫자인지 확인
         for (int i = 0; i < id.length(); i++) {
             if (i == 6) continue;
             char numTest = id.charAt(i);
@@ -49,7 +54,14 @@ public class String_class2 {
             }
         }
 
-        if(genderCode == '1' || '2')
+        int birthYear = Integer.parseInt(id.substring(0, 2));
+        int fullYear;
+
+        if( genderCode > 2){
+            fullYear = birthYear + 2000;
+        }else{
+            fullYear = birthYear + 1900;
+        }
 
 
         //주민번호
@@ -57,7 +69,7 @@ public class String_class2 {
         //성별
         //생일
         System.out.println("주민번호는: " +id);
-        System.out.println("나이: " + age);
+        System.out.println("나이: " + fullYear);
 
 
 

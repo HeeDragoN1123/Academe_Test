@@ -1,0 +1,1 @@
+package Academe.Extends;import javax.swing.*;public class MyWindow extends JFrame {public MyWindow() {//    super(); 디폴트로 실행되고있던것};public MyWindow(String op){   super(op);}}

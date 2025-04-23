@@ -1,4 +1,4 @@
-package Academe;
+package Academe.Array;
 
 public class Array_1 {
     public static void main(String[] arg){

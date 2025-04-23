@@ -1,4 +1,4 @@
-package Academe;
+package Academe.Array;
 // 인덱스 0 / 1 비교  0 > 1 이면 둘을 교환 아니라면 그대로 다음번으로
 // 인덱스 0 /2 / 비교 0> 2  이면 둘을 교환
 public class Array_5 {

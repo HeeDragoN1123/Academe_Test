@@ -1,4 +1,4 @@
-package Academe;
+package Academe.Array;
 
 import java.util.Scanner;
 

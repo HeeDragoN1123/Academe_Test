@@ -1,4 +1,4 @@
-package Academe;
+package Academe.Array;
 
 public class Array_6 {
 

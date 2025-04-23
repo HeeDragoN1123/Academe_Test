@@ -10,7 +10,7 @@ public class HeshMap_1 {
         map.put(4, "bbbb");
         map.put(18, "cccc");
         map.put(9, "dddd");
-        map.put(4, "bbbb");
+        map.put(4, "pppp"); //같은 키값으로 또 저장하면 수정됨
         System.out.println(map.get(4));
         map.put(5, "bbbb");
         System.out.println(map);

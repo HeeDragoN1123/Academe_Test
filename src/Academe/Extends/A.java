@@ -1,6 +1,8 @@
 package Academe.Extends;
 
 public class A {
+    // static : 객체없이 사용가능
+//    final 값을 못고침 대입이 안되고 처음에 값을 넣어어함
     public int num1 = 1;
     protected int num2 = 2;
     private int num3 = 3;

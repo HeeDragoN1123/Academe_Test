@@ -13,7 +13,7 @@ public class Array_5 {
 
         for(int i= 0; i<ar.length; i++){
             ar[i] = (int) (Math.random() * 100);
-            System.out.print(ar[i] + "\t");
+//            System.out.print(ar[i] + "\t");
         }
 
 //        0 ~ 5가지 돌림 앞의숫자를

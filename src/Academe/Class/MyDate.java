@@ -2,7 +2,7 @@ package Academe.Class;
 
 public class MyDate {
     //접근지정자 public > protacted> (default)아무것도 안쓰면 > private
-    // 공개 : 퍼블릭 , 같은 패키지 안에서 사용가능 : 디폴트 , 같은 클래스 안에서 사용가능 : 프리베이트
+    // 공개 : 퍼블릭 ,프로텍티드 :  같은 패키지 안에서 사용가능 : 디폴트 , 같은 클래스 안에서 사용가능 : 프리베이트
     private int year;
     private int month;
     private int day;

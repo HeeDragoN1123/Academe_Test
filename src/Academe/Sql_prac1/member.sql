@@ -119,14 +119,30 @@ WHERE id = 'user3';
 SELECT * FROM board
 WHERE title LIKE '%전략%';
 -- 제목 또는 내용에 전략이 포함된 글
+SELECT * FROM board
+WHERE title LIKE '%전략%' OR contents LIKE '%전략%';
 -- 최근 7일 이내에 올라온 글을 조회수가 높은 순으로 
+SELECT * FROM board
+WHERE DATEDIFF(NOW(), created_at) <= 7
 -- 관리자가 작성한 글 중에 최근글 3개
+SELECT * FROM board
+WHERE usertype = 'admin'
 -- 사용자 'user1' , 'user2' , 'user3' 3사람이 작성한 글
+SELECT * FROM board
+WHERE id IN ('user1', 'user2', 'user3');
 -- 1번글에 달린 리플을 최신순으로
+SELECT * FROM replay
+WHERE boardnum = 1
 -- user1 이 올해 5월에 작성한 글의 개수
+SELECT COUNT(*) FROM board
+WHERE id = 'user1' AND MONTH(created_at) = 5 AND YEAR(created_at) = YEAR(NOW());
 -- user1 가작성한 글의 평균 조회수
+SELECT AVG(viewcount) FROM board
+WHERE id = 'user1';
 -- 각 사용자별 개시글 수
+SELECT id, COUNT(*) AS post_count
 -- 각 개시글에 달린 리플수
+SELECT boardnum, COUNT(*) AS reply_count
 
 
 

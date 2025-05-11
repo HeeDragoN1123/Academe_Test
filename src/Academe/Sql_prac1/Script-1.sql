@@ -226,6 +226,7 @@ order by
 
 
 
+
 -- 전체 검색
 SELECT * FROM student;
 

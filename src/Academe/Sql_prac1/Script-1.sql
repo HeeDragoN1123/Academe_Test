@@ -184,7 +184,6 @@ insert into student(name, birth) value('이00', str_to_date('2025.05.10', '%Y.%m
 SELECT SUM(kor) from student;
 
 -- count
-
 select count(phone) from student;
 
 select COUNT(*) from student;
@@ -222,7 +221,9 @@ group by
  avg > 50
 order by
 	month;
-;
+
+
+
 
 
 

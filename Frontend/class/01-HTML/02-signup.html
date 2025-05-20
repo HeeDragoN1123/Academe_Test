@@ -6,15 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>회원가입</title>
   <link rel="stylesheet" href="./02-signup.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
 
 </head>
 
 <body>
   <h1>회원가입</h1>
-  <input type="text" placeholder="이메일을 입력해 주세요."><br><br>
-  <input type="text" placeholder="이름름을 입력해 주세요."><br><br>
-  <input class="pw" type="password" placeholder="비밀번호를 입력해 주세요."><br><br>
-  <input class="pw" type="password" placeholder="비밀번호를 다시 입력해 주세요."><br><br>
+  <form action="" method="get">
+    <input type="text" placeholder="이메일을 입력해 주세요."><br><br>
+    <input type="text" placeholder="이름름을 입력해 주세요."><br><br>
+    <input class="pw" type="password" placeholder="비밀번호를 입력해 주세요."><br><br>
+    <input class="pw" type="password" placeholder="비밀번호를 다시 입력해 주세요."><br><br>
+
+  </form>
 
   <select name="" id="">
     <!-- true 안붙어도됨 disabled 불린타입이기 때문 -->
@@ -28,9 +35,13 @@
   <input type="radio" name="gender"> 남성
   <br><br>
 
+  <input type="date" name="birth" placeholder="생년월일을 입력해 주세요.">
+  <br><br>
+
   <input type="checkbox" name="agree">이용 약관에 동의합니다.
-  <hr>
+  
   <button>가입하기</button>
+
 </body>
 
 </html>

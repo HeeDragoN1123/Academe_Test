@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.background {
+    width: 1024px;
+    height: 600px;
+    background-image: url(../images/backgorund.png);
+    padding: 20px 0px 0px 20px;
+}
+
+.outerbox {
+    width: 808px;
+    height: 544px;
+    background-image: url(../images/outerbox.png);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 32px 0px 0px 32px;
+}
+
+.wrapper__left {
+    width: 208px;
+    height: 472px;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper__left__header {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* 정렬이 로우(가로 정렬) 시 가운데 정렬은 저스티파이 컨텐트 */
+}
+
+.today {
+    font-size: 9px;
+}
+
+.wrapper__left__body {
+    width: 100%;
+    height: 100%;
+    border: 1px solid gray;
+    border-radius: 15px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 30px;
+    /* 정렬이 컬럼(세로 정령시 가운데 정렬은 얼라인 아이템) */
+}
+
+.left__body__header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.left__body__header__gray {
+    width: 148px;
+    height: 133px;
+    background-color: gray;
+}
+
+.left__body__header__line {
+    border-top: 1px dotted black;
+    margin: 12px 0px;
+}
+
+.left__body__profile {
+    width: 148px;
+    height: 133px;
+}
+
+.profile__icon {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile__contents {
+    margin-left: 15px;
+}
+.left__body__footer {
+    margin-top: 100px;
+    width: 141px;
+    height: 41px;
+}
+
+#emotion {
+    margin-top: 10px;
+    width: 100%;
+    height: 20px;
+}
+
+.wrapper__right {
+    width: 524px;
+    height: 472px;
+    background-color: antiquewhite;
+}

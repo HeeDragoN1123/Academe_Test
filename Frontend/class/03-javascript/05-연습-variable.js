@@ -24,3 +24,47 @@ console.log(isNaN(c)); // true
 console.log(isNaN(null)); // false
 console.log(isNaN("")); // false
 console.log(isNaN(undefined)); // true
+
+// 조건물 실습 1
+
+if (1 + 1 === 2) {
+    console.log("참");
+} else {
+    console.log("거짓");
+}
+
+if (true) {
+    console.log("참");
+} else {
+    console.log("거짓");
+}
+
+if (!true) {
+    console.log("참");
+} else {
+    console.log("거짓");
+}
+
+if (0) {
+    console.log("참");
+} else {
+    console.log("거짓");
+}
+
+// 조건물 실습 2
+
+const profile = {
+    name: "철수",
+    age: 12,
+    school: "다람쥐초등학교",
+};
+
+if (profile.age >= 20) {
+    console.log("성인입니다.");
+} else if (profile.age >= 8) {
+    console.log("학생입니다.");
+} else if (profile.age >= 0) {
+    console.log("어린이입니다.");
+} else {
+    console.log("잘못 입력하셨습니다.");
+}

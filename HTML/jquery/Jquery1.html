@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./script.js"></script>
+    <title>jquery</title>
+</head>
+uNUw2vbJPt%2FIOK0qGJ2UzMDNRVgUQhIGOvu8M%2F9aQRuYwk1wNa%2BFUIlNT9Zme9lp1tOIwJUtPg%2FwMXrsaBdESg%3D%3D
+
+<body>
+    <div id="wrap">
+
+        <h1>jQuery 예제</h1>
+        <p>이 페이지는 jQuery를 사용한 간단한 예제입니다.</p>
+        <script>
+            $(document).ready(function () {
+                $('h1').css('color', 'blue');
+                $('p').css('font-size', '18px');
+            });
+        </script>
+        <button id="clickMe">클릭하세요!</button>
+        <div id="result"></div>
+
+        <!-- 이벤트 제거 예제 -->
+        <button id="removeEvent">이벤트 제거</button>
+        <button id="onEvent">다시 연결</button>
+
+        <script>
+            $(document).ready(function () {
+                $('#clickMe').click(function () {
+                    alert('클릭 이벤트가 발동되었습니다');
+                });
+            });
+
+            $('#removeEvent').click(function () {
+                $('#clickMe').off('click');
+                alert('클릭 이벤트가 제거되었습니다.');
+            });
+            $('#onEvent').click(function () {
+                $('#clickMe').on('click', function () {
+                    alert('클릭 이벤트가 다시 연결되었습니다.');
+                });
+            });
+
+
+        </script>
+
+
+
+        <!-- <p>아래는 jQuery를 사용한 AJAX 예제입니다.</p>
+        <button id="loadData">데이터 불러오기</button>
+        <div id="dataResult"></div>
+        <script>
+            $(document).ready(function () {
+                $('#loadData').click(function () {
+                    $.ajax({
+                        url: 'https://naver.com/',
+                        method: 'GET',
+                        success: function (data) {
+                            $('#dataResult').html('<h2>' + data.title + '</h2><p>' + data.body + '</p>');
+                        },
+                        error: function () {
+                            $('#dataResult').text('데이터를 불러오는 데 실패했습니다.');
+                        }
+                    });
+                });
+            });
+        </script> -->
+        <p>아래는 jQuery를 사용한 애니메이션 예제입니다.</p>
+        <button id="animateBox">박스 애니메이션</button>
+        <div id="box" style="width: 100px; height: 100px; background-color: red; margin-top: 20px;"></div>
+        <script>
+            $(document).ready(function () {
+                $('#animateBox').click(function () {
+                    $('#box').animate({
+                        width: '200px',
+                        height: '200px',
+                        backgroundColor: '#00f'
+                    }, 1000, function () {
+                        // 애니메이션 완료 후 실행할 코드
+                        alert('애니메이션이 완료되었습니다!');
+                    });
+                });
+            });
+        </script>
+
+
+    </div>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            // jQuery를 사용하여 문서가 준비되면 실행되는 코드
+            console.log("jQuery is ready!");
+        });
+
+    </script>
+</body>
+
+</html>

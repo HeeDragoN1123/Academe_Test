@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>부산 맛집 정보</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        .restaurant {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>부산 맛집 정보</h2>
+    <div id="list">로딩 중...</div>
+
+    <script>
+        const serviceKey = "uNUw2vbJPt%2FIOK0qGJ2UzMDNRVgUQhIGOvu8M%2F9aQRuYwk1wNa%2BFUIlNT9Zme9lp1tOIwJUtPg%2FwMXrsaBdESg%3D%3D";
+        const apiUrl = `https://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=${serviceKey}&pageNo=1&numOfRows=10&resultType=json`;
+
+        $.ajax({
+            url: apiUrl,
+            method: 'GET',
+            success: function (response) {
+                console.log(response);  // 여기에 출력
+                console.log("API 응답 전체:", response); // 응답 구조 확인용 로그
+
+                if (!response.getFoodKr || !response.getFoodKr.item) {
+                    $("#list").html("📛 데이터가 없습니다 또는 형식 오류");
+                    return;
+                }
+
+                const items = response.getFoodKr.item;
+                let html = "";
+
+                items.forEach(function (item) {
+                    html += `
+          <div class="restaurant">
+            <strong>${item.MAIN_TITLE}</strong><br>
+            📍 ${item.ADDR1}<br>
+            ☎️ ${item.CNTCT_TEL || "전화번호 없음"}<br>
+            🌐 <a href="${item.HOMEPAGE_URL}" target="_blank">${item.HOMEPAGE_URL || "홈페이지 없음"}</a>
+          </div>
+        `;
+                });
+
+                $("#list").html(html);
+            },
+            error: function (error) {
+                $("#list").html("데이터를 불러오는 데 실패했습니다.");
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+
+</html>

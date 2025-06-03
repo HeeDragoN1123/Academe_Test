@@ -1,45 +1,29 @@
-const readline = require("readline");
+// function arrayTest() {
+//     let ar1 = [1, 2, 3, 4, 5];
+//     let ar2 = [];
+//     let ar3 = new Array();
+//     let ar4 = new Array(5);
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-});
+//     console.log(`ar1: ${ar1}, ar2: ${ar2.length}, ar3: ${ar3.length}, ar4: ${ar4.length}`);
 
-// rl.question("점수를 입력하세요: ", function (n) {
-//     n = Number(n);
+//     ar1[0] = 10;
+//     ar1[4] = 9;
+//     ar1.push(6);
+//     ar1.pop();
+//     ar1.splice(1, 2, 20, 30);
+//     console.log(`ar1: ${ar1}`);
+//     console.log(ar1.indexOf(30));
+//     console.log(ar1.sort());
+// }
 
-//     if (n >= 80) {
-//         console.log("합격입니다.");
-//     } else {
-//         console.log("불합격입니다.");
-//     }
+// arrayTest();
 
-//     rl.close();
-// });
-
-rl.question("점수를 입력하세요 : ", function (n) {
-    n = Number(n);
-    if (isNaN(n)) {
-        console.log("숫자가 아닙니다.");
-        rl.close();
-        return;
-    }
-    if (n < 0 || n > 100) {
-        console.log("점수는 0~100 사이여야 합니다.");
-        rl.close();
-        return;
-    }
-
-    if (n >= 90) {
-        console.log("A");
-    } else if (n >= 80) {
-        console.log("B");
-    } else if (n >= 70) {
-        console.log("C");
-    } else if (n >= 60) {
-        console.log("D");
-    } else {
-        console.log("F");
-    }
-    rl.close();
-});
+function date() {
+    let now = new Date();
+    console.log(
+        `현재 시간: now.getFullYear(): ${now.getFullYear()}, now.getMonth(): ${
+            now.getMonth() + 1
+        }, now.getDate(): ${now.getDate()}, now.getHours(): ${now.getHours()}, now.getMinutes(): ${now.getMinutes()}, now.getSeconds(): ${now.getSeconds()}`
+    );
+}
+date();

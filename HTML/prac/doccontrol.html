@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Document</title>
+
+
+
+    <style></style>
+
+
+    <script>
+
+        $(document).ready(function () {
+            $('#bt1').click(function () {
+                $('h3').text('헬로우 월드');
+
+
+                // // HTML 텍스트 + 태그 포함
+                // $('h1').html('<i>안녕</i>'); // 출력: *기울임 안녕*
+
+                // // 순수 텍스트로만 설정
+                // $('h1').text('<i>안녕</i>'); // 출력: "<i>안녕</i>"
+
+                // // input 값 변경
+                // $('input').val('새로운 값');
+
+                // // 속성 변경
+                // $('img').attr('src', 'new_image.png');
+
+                // // 스타일 변경
+                // $('p').css('color', 'blue');
+
+                // // 클래스 추가
+                // $('div').addClass('box');
+
+                // // 클래스 제거
+                // $('div').removeClass('box');
+
+                // // 클래스 토글
+                // $('div').toggleClass('box');
+
+            });
+            $('#bt2').click(function () {
+                $('#bt2').text('버튼2');
+            });
+            $('#bt3').click(function () {
+                $('#bt3').val('버튼3');
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <!-- html() , text() 메소드, val(), attr() 메소드 ,css() 메소드, addClass(), removeClass(), toggleClass() 메소드, -->
+
+    <p><input type="button" id="bt1" value="html() 함수">
+    <h3>헬로우</h3>
+    </p>
+    <p><input type="button" id="bt2" value="html() 함수"></p>
+    <p><input type="button" id="bt3" value="html() 함수"></p>
+
+
+
+
+
+
+</body>
+
+</html>

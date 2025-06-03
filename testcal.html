@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>2025 달력 (슬라이드형 + 가로 카드 드래그)</title>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        #calendar-container {
+            max-width: 1000px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .month-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .month-nav button {
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+
+        .month {
+            border: 1px solid #ccc;
+            background-color: white;
+            padding: 10px;
+            display: none;
+        }
+
+        .month.active {
+            display: block;
+        }
+
+        .month h3 {
+            margin: 5px 0 10px;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .day {
+            min-height: 120px;
+            background-color: #e0f7fa;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 14px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .day-number {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .sunday {
+            color: red;
+        }
+
+        /* 카드 컨테이너: 가로 flex배치 + 줄바꿈 가능 */
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            flex-grow: 1;
+            overflow-y: auto;
+            /* 필요 시 스크롤 */
+        }
+
+        /* 카드 스타일 */
+        .card {
+            min-width: 100px;
+            padding: 6px 10px;
+            background-color: white;
+            border: 1px solid #999;
+            cursor: grab;
+            user-select: none;
+            border-radius: 4px;
+        }
+
+        /* 메모 추가 버튼 위치 */
+        .add-card {
+            position: absolute;
+            bottom: 6px;
+            right: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            color: #007bff;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="calendar-container">
+        <div class="month-nav">
+            <button onclick="showMonth(currentMonth - 1)">← 이전</button>
+            <div id="month-label">1월</div>
+            <button onclick="showMonth(currentMonth + 1)">다음 →</button>
+        </div>
+        <div id="calendar"></div>
+    </div>
+
+    <script>
+        const calendarEl = document.getElementById("calendar");
+        const year = 2025;
+        const monthNames = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+        let currentMonth = 0;
+
+        function createCalendar() {
+            for (let m = 0; m < 12; m++) {
+                const monthBox = document.createElement("div");
+                monthBox.className = "month";
+                if (m === 0) monthBox.classList.add("active");
+
+                const title = document.createElement("h3");
+                title.textContent = monthNames[m];
+                monthBox.appendChild(title);
+
+                const daysGrid = document.createElement("div");
+                daysGrid.className = "days";
+
+                const date = new Date(year, m, 1);
+                const firstDay = date.getDay();
+                const lastDate = new Date(year, m + 1, 0).getDate();
+
+                // 공백 채우기
+                for (let i = 0; i < firstDay; i++) {
+                    const blank = document.createElement("div");
+                    daysGrid.appendChild(blank);
+                }
+
+                for (let d = 1; d <= lastDate; d++) {
+                    const dayDate = new Date(year, m, d);
+                    const dayOfWeek = dayDate.getDay();
+                    const day = document.createElement("div");
+                    day.className = "day";
+
+                    let dayClass = "day-number";
+                    if (dayOfWeek === 0) {
+                        dayClass += " sunday"; // 일요일은 빨간색
+                    }
+
+                    day.innerHTML = `
+                        <div class="${dayClass}">${d}</div>
+                        <div class="cards"></div>
+                        <div class="add-card">＋</div>
+                    `;
+                    daysGrid.appendChild(day);
+                }
+
+                monthBox.appendChild(daysGrid);
+                calendarEl.appendChild(monthBox);
+            }
+        }
+
+        function enableCardDrag() {
+            document.querySelectorAll(".day").forEach(day => {
+                new Sortable(day.querySelector(".cards"), {
+                    group: 'shared',
+                    animation: 150,
+                    direction: 'horizontal',
+                    swapThreshold: 0.65,
+                    fallbackTolerance: 3,
+                });
+            });
+        }
+
+        function enableCardAdding() {
+            document.addEventListener("click", function (e) {
+                if (e.target.classList.contains("add-card")) {
+                    const cardsDiv = e.target.parentElement.querySelector(".cards");
+                    const text = prompt("메모 내용을 입력하세요:");
+                    if (text) {
+                        const card = document.createElement("div");
+                        card.className = "card";
+                        card.textContent = text;
+                        cardsDiv.appendChild(card);
+                    }
+                }
+            });
+        }
+
+        function showMonth(index) {
+            if (index < 0 || index > 11) return;
+            document.querySelectorAll(".month").forEach((m, i) => {
+                m.classList.toggle("active", i === index);
+            });
+            currentMonth = index;
+            document.getElementById("month-label").textContent = monthNames[currentMonth];
+        }
+
+        // 초기 실행
+        createCalendar();
+        enableCardDrag();
+        enableCardAdding();
+    </script>
+
+</body>
+
+</html>

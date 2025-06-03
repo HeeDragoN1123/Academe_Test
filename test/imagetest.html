@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자연 여행 - Nature Travel</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding-top: 200px;
+            background: linear-gradient(135deg, #2d5a5a 0%, #4a7c59 100%);
+            min-height: 100vh;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1e3d3d 0%, #2d5a5a 100%);
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            z-index: 9999;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .menu li:first-child {
+            margin-left: 100px;
+            margin-right: auto;
+        }
+
+        .menu li:last-child {
+            margin-right: 620px;
+        }
+
+        .menu li a {
+            color: #e8f5e8;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .menu li a:hover {
+            color: #a8d8a8;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            background: linear-gradient(45deg, #6b8e23, #8fbc8f);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .postSection {
+            width: 1200px;
+            height: 600px;
+            margin-left: 100px;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            margin-top: 50px;
+            box-sizing: border-box;
+        }
+
+        .section-title {
+            color: #e8f5e8;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .cardContainer {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .cardWrap {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            color: #e8f5e8;
+        }
+
+        .cardWrap:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .cardWrap img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            filter: brightness(0.9) contrast(1.1);
+        }
+
+        .cardWrap h3 {
+            font-size: 18px;
+            margin: 0;
+            color: #f0f8f0;
+            font-weight: 600;
+        }
+
+        .cardWrap p {
+            font-size: 14px;
+            color: #c8e6c8;
+            margin: 8px 0 0 0;
+        }
+
+        #aside {
+            position: absolute;
+            top: 220px;
+            right: 60px;
+            width: 500px;
+            height: calc(600px * 3 + 40px * 2);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 30px;
+            box-sizing: border-box;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        #aside h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #e8f5e8;
+            font-weight: bold;
+        }
+
+        #aside p {
+            color: #c8e6c8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        #aside button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #6b8e23, #8fbc8f);
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #aside button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #7ba428, #9fcc9f);
+        }
+
+        #footer {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1e3d3d 0%, #2d5a5a 100%);
+            color: #e8f5e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .mountain-bg {
+            background: linear-gradient(to bottom,
+                    rgba(46, 90, 90, 0.8) 0%,
+                    rgba(74, 124, 89, 0.6) 50%,
+                    rgba(107, 142, 35, 0.4) 100%);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="menu">
+        <ul>
+            <li><a href="#">
+                    <div class="logo">🏔️</div>
+                </a></li>
+            <li><a href="#">홈</a></li>
+            <li><a href="#">여행지</a></li>
+            <li><a href="#">추천</a></li>
+            <li><a href="#">커뮤니티</a></li>
+            <li><a href="#">문의</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="postSection">
+            <h2 class="section-title">아름다운 자연 여행지를 탐험하세요</h2>
+            <div class="cardContainer">
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=150&fit=crop"
+                        alt="산맥">
+                    <h3>웅장한 산맥</h3>
+                    <p>자연의 위대함을 경험하세요</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=300&h=150&fit=crop"
+                        alt="호수">
+                    <h3>고요한 호수</h3>
+                    <p>평온함이 가득한 공간</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=150&fit=crop"
+                        alt="숲">
+                    <h3>신비로운 숲</h3>
+                    <p>자연 속 힐링 여행</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=150&fit=crop"
+                        alt="절벽">
+                    <h3>험준한 절벽</h3>
+                    <p>모험이 기다리는 곳</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=300&h=150&fit=crop"
+                        alt="강">
+                    <h3>맑은 강물</h3>
+                    <p>자연의 생명력을 느껴보세요</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=300&h=150&fit=crop"
+                        alt="들판">
+                    <h3>푸른 초원</h3>
+                    <p>끝없이 펼쳐진 자연</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=150&fit=crop"
+                        alt="폭포">
+                    <h3>장엄한 폭포</h3>
+                    <p>자연의 역동적인 에너지</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=150&fit=crop"
+                        alt="계곡">
+                    <h3>숨겨진 계곡</h3>
+                    <p>비밀스러운 자연의 보물</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="postSection">
+            <h2 class="section-title">인기 여행 코스</h2>
+            <div class="cardContainer">
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=150&fit=crop"
+                        alt="트레킹">
+                    <h3>산악 트레킹</h3>
+                    <p>도전과 성취의 경험</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=300&h=150&fit=crop"
+                        alt="캠핑">
+                    <h3>호수 캠핑</h3>
+                    <p>별빛 아래에서의 하룻밤</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=150&fit=crop"
+                        alt="사진촬영">
+                    <h3>자연 사진 투어</h3>
+                    <p>아름다운 순간을 담아보세요</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=300&h=150&fit=crop"
+                        alt="래프팅">
+                    <h3>강 래프팅</h3>
+                    <p>스릴 넘치는 모험</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=300&h=150&fit=crop"
+                        alt="승마">
+                    <h3>초원 승마</h3>
+                    <p>자유로운 질주의 즐거움</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=150&fit=crop"
+                        alt="암벽등반">
+                    <h3>암벽 등반</h3>
+                    <p>한계를 넘어서는 도전</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=300&h=150&fit=crop"
+                        alt="낚시">
+                    <h3>호수 낚시</h3>
+                    <p>고요함 속의 여유</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=150&fit=crop"
+                        alt="명상">
+                    <h3>숲 속 명상</h3>
+                    <p>마음의 평화를 찾아보세요</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="postSection">
+            <h2 class="section-title">계절별 추천 여행지</h2>
+            <div class="cardContainer">
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=150&fit=crop"
+                        alt="봄">
+                    <h3>봄의 전령</h3>
+                    <p>새싹이 돋아나는 계절</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=300&h=150&fit=crop"
+                        alt="여름">
+                    <h3>여름의 청량감</h3>
+                    <p>시원한 물가에서의 휴식</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=300&h=150&fit=crop"
+                        alt="가을">
+                    <h3>가을의 단풍</h3>
+                    <p>붉게 물든 자연의 향연</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=300&h=150&fit=crop"
+                        alt="겨울">
+                    <h3>겨울의 설경</h3>
+                    <p>순백의 세상으로</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=150&fit=crop"
+                        alt="일출">
+                    <h3>황금빛 일출</h3>
+                    <p>새로운 하루의 시작</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=150&fit=crop"
+                        alt="일몰">
+                    <h3>붉은 석양</h3>
+                    <p>하루를 마무리하는 아름다움</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=300&h=150&fit=crop"
+                        alt="별밤">
+                    <h3>별이 빛나는 밤</h3>
+                    <p>우주의 신비를 바라보며</p>
+                </div>
+                <div class="cardWrap">
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=300&h=150&fit=crop"
+                        alt="안개">
+                    <h3>신비로운 안개</h3>
+                    <p>몽환적인 자연의 베일</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <aside id="aside">
+        <h3>여행 가이드</h3>
+        <p>자연 속에서 진정한 휴식을 찾아보세요. 우리의 전문 가이드와 함께라면 안전하고 즐거운 여행이 보장됩니다.</p>
+
+        <h3>예약 안내</h3>
+        <p>• 온라인 예약 시 10% 할인<br>
+            • 그룹 여행 특별 패키지 제공<br>
+            • 전문 가이드 동행 서비스<br>
+            • 24시간 고객 지원</p>
+
+        <h3>안전 수칙</h3>
+        <p>자연을 사랑하고 보호하며, 안전한 여행을 위해 항상 준비를 철저히 해주세요.</p>
+
+        <button>지금 예약하기</button>
+        <button>더 많은 정보</button>
+    </aside>
+
+    <footer id="footer">
+        <div>
+            <p>&copy; 2025 Nature Travel. 자연과 함께하는 특별한 여행을 경험하세요.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

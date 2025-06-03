@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코드캠프 회원가입</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .signup-container {
+            width: 540px;
+            height: 960px;
+            background-color: white;
+            border-radius: 20px;
+            border: 1px solid #e0e0e0;
+            padding: 40px 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0066ff;
+            margin-bottom: 50px;
+        }
+
+        .input-field {
+            width: 100%;
+            max-width: 420px;
+            height: 50px;
+            border: 1px solid #d9d9d9;
+            border-radius: 8px;
+            padding: 0 15px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .input-field::placeholder {
+            color: #999;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #0066ff;
+        }
+
+        .birth-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 420px;
+            margin-bottom: 20px;
+        }
+
+        .birth-input {
+            width: 30%;
+            height: 50px;
+            border: 1px solid #d9d9d9;
+            border-radius: 8px;
+            padding: 0 15px;
+            text-align: center;
+        }
+
+        .birth-separator {
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            color: #999;
+        }
+
+        .verification-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 420px;
+            margin-bottom: 20px;
+        }
+
+        .verification-code {
+            color: #0066ff;
+            font-size: 18px;
+            font-weight: bold;
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .verification-button {
+            background-color: white;
+            border: 1px solid #0066ff;
+            border-radius: 8px;
+            color: #0066ff;
+            height: 40px;
+            padding: 0 15px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .timer {
+            color: #0066ff;
+            font-size: 18px;
+            font-weight: bold;
+            margin-left: auto;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .submit-button {
+            background-color: #0066ff;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            height: 50px;
+            width: 180px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .select-container {
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .dropdown {
+            width: 100%;
+            height: 50px;
+            border: 1px solid #d9d9d9;
+            border-radius: 8px;
+            padding: 0 15px;
+            appearance: none;
+            background-color: white;
+            cursor: pointer;
+            font-size: 16px;
+            color: #999;
+        }
+
+        .arrow-down {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #999;
+        }
+
+        .gender-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 420px;
+            margin-bottom: 40px;
+        }
+
+        .gender-option {
+            margin: 0 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        .gender-radio {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .signup-button {
+            width: 100%;
+            max-width: 420px;
+            height: 60px;
+            border: 1px solid #0066ff;
+            border-radius: 8px;
+            background-color: white;
+            color: #0066ff;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="signup-container">
+        <h1 class="title">코드캠프 회원가입</h1>
+
+        <input type="email" class="input-field" placeholder="이메일을 입력해 주세요.">
+
+        <input type="text" class="input-field" placeholder="이름을 입력해 주세요.">
+
+        <input type="password" class="input-field" placeholder="비밀번호를 입력해 주세요.">
+
+        <input type="password" class="input-field" placeholder="비밀번호를 다시 입력해 주세요.">
+
+        <div class="birth-container">
+            <input type="text" class="birth-input" maxlength="4" placeholder="YYYY">
+            <div class="birth-separator">-</div>
+            <input type="text" class="birth-input" maxlength="2" placeholder="MM">
+            <div class="birth-separator">-</div>
+            <input type="text" class="birth-input" maxlength="2" placeholder="DD">
+        </div>
+
+        <div class="verification-container">
+            <div class="verification-code">000000</div>
+            <button class="verification-button">인증번호 전송</button>
+        </div>
+
+        <div class="verification-container">
+            <div class="timer">2:23</div>
+            <button class="submit-button">인증 완료</button>
+        </div>
+
+        <div class="select-container">
+            <select class="dropdown">
+                <option value="" selected disabled>지역을 선택하세요.</option>
+                <option value="서울">서울</option>
+                <option value="경기">경기</option>
+                <option value="인천">인천</option>
+                <option value="부산">부산</option>
+                <option value="대구">대구</option>
+                <option value="광주">광주</option>
+                <option value="대전">대전</option>
+                <option value="울산">울산</option>
+                <option value="세종">세종</option>
+                <option value="강원">강원</option>
+                <option value="충북">충북</option>
+                <option value="충남">충남</option>
+                <option value="전북">전북</option>
+                <option value="전남">전남</option>
+                <option value="경북">경북</option>
+                <option value="경남">경남</option>
+                <option value="제주">제주</option>
+            </select>
+            <div class="arrow-down">▼</div>
+        </div>
+
+        <div class="gender-container">
+            <div class="gender-option">
+                <input type="radio" id="female" name="gender" class="gender-radio">
+                <label for="female">여성</label>
+            </div>
+            <div class="gender-option">
+                <input type="radio" id="male" name="gender" class="gender-radio">
+                <label for="male">남성</label>
+            </div>
+        </div>
+
+        <button class="signup-button">가입하기</button>
+    </div>
+</body>
+
+</html>

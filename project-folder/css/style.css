@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 200px; /* 메뉴 높이에 맞게 본문 밀기 */
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: #333;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    z-index: 9999; /* 메뉴가 항상 최상위에 보이도록 */
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.menu li:first-child {
+    margin-left: 100px; /* 로고 위치 조정 */
+    margin-right: auto; /* 메뉴를 오른쪽으로 밀기 */
+}
+
+.menu li:last-child {
+    margin-right: 620px; /* 메뉴 전체 오른쪽으로부터 여백 */
+}
+
+.menu li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+.postSection {
+    width: 1200px;
+    height: 600px;
+    margin-left: 100px;
+    margin-bottom: 40px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-top: 50px;
+    box-sizing: border-box;
+}
+
+/* 카드들을 4 * 2로 그리드 배치 */
+.cardContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 가로 4개 */
+    gap: 30px;
+}
+
+/* 카드 */
+.cardWrap {
+    background-color: #f2f2f2;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+.cardWrap:hover {
+    transform: translateY(-5px);
+}
+
+/* 카드 이미지 */
+.cardWrap img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* 카드 제목 */
+.cardWrap h3 {
+    font-size: 18px;
+    margin: 0;
+}
+/* 사이드 */
+#aside {
+    position: absolute;
+    top: 220px;
+    right: 60px;
+    width: 500px;
+    height: calc(600px * 3 + 40px * 2);
+    border: 1px dashed #aaa;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+#aside h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#aside button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+/* 푸터 */
+#footer {
+    width: 100%;
+    height: 200px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    line-height: 200px;
+    font-size: 18px;
+}

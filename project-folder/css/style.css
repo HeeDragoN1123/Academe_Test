@@ -137,3 +137,41 @@ body {
     line-height: 200px;
     font-size: 18px;
 }
+
+.postwrap {
+    width: 1720px;
+    height: 200px;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+    margin-left: 100px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 좌우 영역 사이 최대 간격 */
+    box-sizing: border-box;
+    padding-left: 30px; /* 왼쪽 글자와 왼쪽 경계 사이 간격 */
+    padding-right: 0; /* 오른쪽 여백 없이 딱 붙이기 */
+}
+
+.postText {
+    max-width: calc(100% - 320px); /* 이미지 320px 공간 빼기 */
+}
+
+.postText h3,
+.postText p {
+    margin: 0 0 10px 0;
+}
+
+.postImage {
+    width: 320px;
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+}
+
+.postImage img {
+    height: 160px;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}

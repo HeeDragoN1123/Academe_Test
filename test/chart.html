@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chart.js 종합 예제</title>
+    <!-- Chart.js CDN (v4.x) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin: 40px;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        canvas {
+            max-width: 400px;
+            max-height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Chart.js 4가지 차트 모음</h2>
+
+    <div class="wrapper">
+        <canvas id="barChart"></canvas>
+        <canvas id="lineChart"></canvas>
+        <canvas id="doughnutChart"></canvas>
+        <canvas id="radarChart"></canvas>
+    </div>
+
+    <script>
+        /* ---------- 공통 색상 팔레트 ---------- */
+        const COLORS = [
+            'rgba(54,162,235,0.6)',
+            'rgba(255,99,132,0.6)',
+            'rgba(255,205,86,0.6)',
+            'rgba(75,192,192,0.6)',
+            'rgba(153,102,255,0.6)',
+            'rgba(201,203,207,0.6)'
+        ];
+
+        /* ---------- 1) 막대 차트 ---------- */
+        new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: ['월', '화', '수', '목', '금', '토', '일'],
+                datasets: [{
+                    label: '방문자 수',
+                    data: [120, 190, 300, 150, 200, 170, 250],
+                    backgroundColor: COLORS[0],
+                    borderColor: COLORS[0].replace('0.6', '1'),
+                    borderWidth: 1
+                }]
+            },
+            options: { responsive: true, scales: { y: { beginAtZero: true } } }
+        });
+
+        /* ---------- 2) 라인 차트 ---------- */
+        new Chart(document.getElementById('lineChart'), {
+            type: 'line',
+            data: {
+                labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+                datasets: [{
+                    label: '매출(만원)',
+                    data: [65, 59, 80, 81, 56, 90],
+                    fill: false,
+                    borderColor: COLORS[1].replace('0.6', '1'),
+                    tension: 0.3
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        /* ---------- 3) 도넛 차트 ---------- */
+        new Chart(document.getElementById('doughnutChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Chrome', 'Safari', 'Edge', 'Firefox', '기타'],
+                datasets: [{
+                    data: [63, 19, 8, 5, 5],
+                    backgroundColor: COLORS,
+                    hoverOffset: 6
+                }]
+            },
+            options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+        });
+
+        /* ---------- 4) 레이더 차트 ---------- */
+        new Chart(document.getElementById('radarChart'), {
+            type: 'radar',
+            data: {
+                labels: ['HTML', 'CSS', 'JavaScript', 'Java', 'SQL', 'Python'],
+                datasets: [{
+                    label: '숙련도(%)',
+                    data: [80, 70, 85, 60, 75, 65],
+                    backgroundColor: COLORS[3],
+                    borderColor: COLORS[3].replace('0.6', '1'),
+                    pointBackgroundColor: COLORS[3].replace('0.6', '1'),
+                    fill: true
+                }]
+            },
+            options: { responsive: true, scales: { r: { suggestedMin: 0, suggestedMax: 100 } } }
+        });
+    </script>
+</body>
+
+</html>

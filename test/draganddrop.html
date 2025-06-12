@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>80 % Overlap Slide-CAPTCHA</title>
+
+    <!-- jQuery & jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            padding: 30px;
+        }
+
+        #canvas {
+            position: relative;
+            width: 420px;
+            height: 180px;
+            margin: 0 auto;
+        }
+
+        /* 목표 실루엣 */
+        #target {
+            position: absolute;
+            top: 40px;
+            left: 250px;
+            width: 150px;
+            height: 100px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, .15);
+        }
+
+        /* 파란 검증 박스 */
+        #piece {
+            position: absolute;
+            top: 40px;
+            left: 20px;
+            width: 150px;
+            height: 100px;
+            border-radius: 12px;
+            background: #2196f3;
+            cursor: grab;
+        }
+
+        #msg {
+            margin-top: 25px;
+            font-weight: 700;
+        }
+
+        #resetBtn {
+            margin-top: 15px;
+        }
+
+        .pulse {
+            animation: pulse .7s ease-out 1;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, .7)
+            }
+
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 16px rgba(76, 175, 80, 0)
+            }
+
+            100% {
+                transform: scale(1)
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>사람임을 증명하세요</h2>
+    <p>파란 박스를 슬라이드하여 흐린 영역과 80 % 이상 맞춰보세요.</p>
+
+    <div id="canvas">
+        <div id="target"></div>
+        <div id="piece"></div>
+    </div>
+
+    <div id="msg">아직 미통과 🟥</div>
+    <button id="resetBtn">다시 시도</button>
+
+    <script>
+        $(function () {
+            const $piece = $("#piece");
+            const $target = $("#target");
+            const $msg = $("#msg");
+
+            /** 1) 슬라이드(드래그) 설정 – X축만 */
+            $piece.draggable({
+                containment: "#canvas",
+                axis: "x",                // ⬅️ 좌우만 이동
+                start() { $msg.text("드래그 중…").css("color", ""); },
+                stop() { isPassed() ? pass() : fail(); }
+            });
+
+            /** 2) 80 % 이상 겹쳤는지 검사 */
+            function isPassed() {
+                const a = $piece[0].getBoundingClientRect();
+                const b = $target[0].getBoundingClientRect();
+
+                const xOverlap = Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left));
+                const intersection = xOverlap * a.height;        // 높이는 동일
+                const pieceArea = a.width * a.height;
+
+                return (intersection / pieceArea) >= 0.8;
+            }
+
+            /** 3) 결과 처리 */
+            function pass() {
+                $msg.text("통과! ✅").css("color", "#4caf50");
+                $piece.draggable("disable").addClass("pulse");
+            }
+            function fail() {
+                $msg.text("미통과 🟥 80 % 미만입니다.").css("color", "#f44336");
+            }
+
+            /** 4) 초기화 */
+            $("#resetBtn").on("click", () => {
+                $piece.css({ left: 20 }).draggable("enable").removeClass("pulse");
+                $msg.text("아직 미통과 🟥").css("color", "");
+            });
+        });
+    </script>
+</body>
+
+</html>

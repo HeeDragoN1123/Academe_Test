@@ -175,3 +175,35 @@ body {
     border-radius: 10px;
     display: block;
 }
+
+.contentsWrap {
+    width: 1400px;
+    display: flex;
+    align-items: flex-start; /* 위에 정렬 */
+    margin: 0 auto; /* 가운데 정렬용 */
+    gap: 30px; /* 이미지와 글 사이 간격 */
+}
+
+.contentsTextArea {
+    flex: 1; /* 남은 공간 다 차지 */
+    height: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.contentsImage {
+    width: 320px;
+    flex-shrink: 0; /* 이미지 영역 줄어들지 않게 */
+}
+
+.contentsImage img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}

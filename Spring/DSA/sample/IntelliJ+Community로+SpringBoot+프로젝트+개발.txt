@@ -1,0 +1,157 @@
+
+[ 제공된 프로젝트 파일 받아서 실행하기 ]
+
+- 작업 폴더 (workspace)에 sample.zip 압축 해제
+- IntelliJ Community Edition 실행하고 [File] 메뉴 - Open 명령 
+  sample 폴더 선택하여 열기
+
+-   [File] 메뉴 - Settings 명령 - Editor - File Encodings 
+  Default encoding for properties files : UTF-8로 변경
+
+- [View] 메뉴 - Tool Windows - Gradle 명령
+  프로젝트 이름 마우스 우클릭 - Refresh Gradle Dependencies
+- Project 뷰에서 src/main/java/패키지명/SampleApplication 클래스 마우스 우클릭
+  Run SampleApplication.main() 실행
+
+- 웹브라우저에서 http://localhost:9999 접속
+
+
+
+
+[ 스프링 홈페이지에서 프로젝트 생성하기 ]
+
+- https://spring.io/ 접속
+- 화면 상단 메뉴 - Projects - Spring Initializr
+- 다음 선택
+  Project : Gradle-Groovy
+  Language : Java
+  Spring Boot : 3.5.0 (현재 LTS 버전)
+  Project Metadata (프로젝트의 이름과 패키지 경로 등 입력)
+      Group : net.datasa
+      Artifact : web1
+      Name : web1
+      Description : 프로젝트에 대한 설명
+      Package name : net.datasa.web1
+      Packaging : jar
+      Java : 17
+- GENERATE 버튼
+- 다운로드한 web1.zip을 workspace에 압축 해제
+
+- IntelliJ Community Edition 실행하고 [File] 메뉴 - Open 명령 
+  web1 폴더 선택하여 열기
+
+- [File] 메뉴 - Settings 명령 - Editor - File Encodings 
+  Default encoding for properties files : UTF-8로 변경
+
+- settings.gradle 파일에서 프로젝트명 확인
+------------------------------------------------------------
+rootProject.name = 'web1'
+------------------------------------------------------------
+
+- build.gradle 파일의 다음 내용 확인
+------------------------------------------------------------
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.0'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'net.datasa'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+------------------------------------------------------------
+
+- src/main/resources/application.properties 파일에서 다음 설정 확인
+------------------------------------------------------------
+spring.application.name=web1
+
+#port number
+server.port=9999
+
+#Context Path
+server.servlet.context-path=/
+
+#Log level
+#error>warn>info>debug>trace
+logging.level.root=info
+logging.level.net.datasa.web1=debug
+------------------------------------------------------------
+
+- [File] 메뉴 - Project Structure - Project
+   SDK - 설치한 JDK17선택 (또는 Add JDK from Disk 선택하고 설치한 폴더 선택)
+   Language level : 17
+  "OK" 버튼
+
+
+- src/main/java/패키지명을 마우스 우클릭 - New - Java Class - 클래스명 (HomeController) 입력
+- 다음 코드 입력
+------------------------------------------------------------
+package net.datasa.web1;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class HomeController {
+	@GetMapping("")
+	public String main() {
+		return "home";
+	}
+}
+------------------------------------------------------------
+
+- src/main/resources 폴더 우클릭 - New - Directory 명령
+- "templates", "static" 이름으로 2개의 폴더 생성
+- templates 폴더 우클릭 - New - HTML file - 파일명 입력 (home.html)
+- html 파일에 다음 내용 입력
+------------------------------------------------------------
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>web1</title>
+</head>
+<body>
+    <h1>[ web1 예제 ]</h1>
+</body>
+</html>
+------------------------------------------------------------
+
+- [View] 메뉴 - Tool Windows - Gradle 명령
+  프로젝트 이름 마우스 우클릭 - Refresh Gradle Dependencies
+- Project 뷰에서 src/main/java/패키지명/Web1Application 클래스 마우스 우클릭
+  Run Web1Application.main() 또는 Debug Web1Application.main() 실행
+
+- 웹브라우저에서 http://localhost:9999 접속
+
+

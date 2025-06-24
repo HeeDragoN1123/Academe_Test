@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Slf4j
 @Controller
 public class HomeController {
-    @GetMapping("")
-    public String main() {
-        return "home";
-    }
+//    @GetMapping("")
+//    public String main() {
+//        return "home";
+//    }
 
     // inner 경로
     @GetMapping("/inner")
@@ -54,5 +54,8 @@ public class HomeController {
         log.trace("트레이스");
         return "redirect:/";
     }
+
+
+
 }
 

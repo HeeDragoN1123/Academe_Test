@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>타임리프</title>
+</head>
+<body>
+
+
+<h1>thymeleaf문법</h1>
+
+<p th:text="${str}">기본값</p>
+<p><a th:href="@{/param/view1.html}">파라미터 보내기</a></p>
+<p><img th:src="@{/image/p1.webp}" alt="이미지"></p>
+
+<!--html 주석
+< > == != lt gt ge le eq ne
+-->
+<p th:text="${num gt 0 }"></p>
+<p th:text="${num le 0 }"></p>
+<p th:text="${num == 0 }"></p>
+<p th:text="${num != 0 }"></p>
+
+
+
+
+
+
+
+<!--<p th:text="${person}"></p>-->
+<!--<p th:text="${person.name}"></p>-->
+
+<!--<ol th:object="${person}">-->
+<!--    <li th:text="*{id}"></li>-->
+<!--    <li th:text="*{password}"></li>-->
+<!--    <li th:text="*{name}"></li>-->
+<!--    <li th:text="*{id}"></li>-->
+<!--    <li th:text="*{id}"></li>-->
+<!--</ol>-->
+
+
+<p th:text="${date}">데이트</p>
+
+<p th:text="${localDate}">로컬데이트</p>
+
+<p th:text="${localDateTime}">로컬데이트타임</p>
+<p th:text="${#number.formatInteger(n1,10)}">n1 10자리까지</p>
+<p th:text="${#number.formatInteger(n2,0,'COMMA')}"></p>
+<p th:text="${#number.formatInteger(n2,3,'COMMA',2,'POINT')}">n3 소수점 </p>
+<p th:text="${#temporals.format(localDateTime, 'yyyy/MM/dd HH:mm:ss')}">n3 소수점 </p>
+<p th:text="${#temporals.format(localDate, 'yyyy년 MM월 dd일')}">n3 소수점 </p>
+
+
+
+
+<p th:text="${#strings.listSplit(value,'-' )}">문자열  </p>
+
+
+
+
+
+
+
+<!--/* ...이건 HTML 주석은 브라우저에도 남지만, 타임리프 주석은 브라우저에 출력 안됨  */-->
+
+</body>
+</html>

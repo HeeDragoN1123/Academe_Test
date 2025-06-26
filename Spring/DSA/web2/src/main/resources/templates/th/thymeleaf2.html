@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>타임리프2</title>
+</head>
+<body>
+<h1>2번</h1>
+
+<p th:text="${list}">기본값</p>
+
+<p th:if="${str == '문자열'}">str 이 문자열이면 보임</p>
+
+<p th:each=" s : ${list}" th:text="${s}"></p>
+<table>
+
+    <tr>
+        <td th:each=" s : ${list}" th:text="${s}"></td>
+
+    </tr>
+
+</table>
+
+<table>
+
+    <tr th:each=" s : ${list}">
+        <td  th:text="${s}"></td>
+
+    </tr>
+
+</table>
+
+<table th:each=" s : ${list}">
+
+    <tr >
+        <td  th:text="${s}"></td>
+
+    </tr>
+
+</table>
+
+<!--index  : 인덱스 반복 0-->
+<!--count  :  현재 반복 1부터-->
+<!--size   : 총 요소-->
+<!--current : 현재요소-->
+<!--even : 짝수여부-->
+<!--odd : 홀수여부-->
+<!--first  : 반복 첫번째인지-->
+<!--last  : 마지막인지-->
+
+
+<!--<table>-->
+
+<!--    <tr th:each=" item : ${map}">-->
+<!--        <td  th:text="${item.key}"></td>-->
+<!--        <td  th:text="${item.value}"></td>-->
+
+<!--    </tr>-->
+
+<!--</table>-->
+<!--<p th:text="${map.product}"></p>-->
+
+<p th:each="n : ${#numbers.sequence(1,5,1)}">
+    <span th:text="${n}"></span>
+</p>
+
+<p >
+    <span th:each="n : ${#numbers.sequence(1,5,1)}" th:text="${n}"></span><span th:unless="${n}"></span>
+</p>
+
+
+</body>
+</html>

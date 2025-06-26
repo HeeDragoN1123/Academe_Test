@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+
 //DAta : 게터 세터 생성자 자동완성 롬복 기능
 @Data
 @NoArgsConstructor
@@ -16,5 +18,7 @@ public class Person {
     private String com;
 
 }
+
+
 
 

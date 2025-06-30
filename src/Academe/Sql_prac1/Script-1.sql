@@ -12,7 +12,7 @@ CREATE TABLE student (
     createdate  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 2. 데이터 삽입 (김영희)
+-- 2. 데이터 삽입 (김영희)			
 INSERT INTO student (name, phone, adress, kor, eng, mat, birth)
 VALUES
 ('김민수', '010-7777-8888', '서울특별시 강서구 화곡동 678-90', 85, 90, 88, '1999-02-05'),

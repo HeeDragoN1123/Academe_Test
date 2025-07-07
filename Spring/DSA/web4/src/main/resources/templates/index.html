@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'web4 서버 연결'">web4 서버 연결</title>
+</head>
+<body>
+
+<h1>mysql 연결</h1>
+<h1>서버 연결</h1>
+
+<!-- 타임리프 예시 출력 -->
+<p th:text="'서버에서 받은 값: ' + ${msg}">기본 메시지</p>
+
+
+<a th:href="@{/guestbook/write}">글쓰기</a>
+
+</body>
+</html>

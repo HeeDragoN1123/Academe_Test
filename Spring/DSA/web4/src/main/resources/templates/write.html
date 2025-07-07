@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>방명록 글쓰기</title>
+
+  <!-- CSS (static/style.css) -->
+  <link rel="stylesheet" th:href="@{/style.css}">
+
+  <!-- jQuery (CDN 또는 static/js/jquery-3.6.0.min.js) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- 또는 정적 파일 사용 시 -->
+</head>
+<body>
+
+<h1>방명록 글쓰기</h1>
+
+<form th:action="@{/guestbook/save}" th:object="${guestbook}" method="post">
+  <p>
+    <label for="name">이름:</label>
+    <input type="text" id="name" th:field="*{name}" required>
+  </p>
+
+  <p>
+    <label for="password">비밀번호:</label>
+    <input type="password" id="password" th:field="*{password}" required>
+  </p>
+
+  <p>
+    <label for="message">내용:</label><br>
+    <textarea id="message" th:field="*{message}" rows="5" cols="50" required></textarea>
+  </p>
+
+  <button type="submit">저장</button>
+</form>
+
+</body>
+</html>

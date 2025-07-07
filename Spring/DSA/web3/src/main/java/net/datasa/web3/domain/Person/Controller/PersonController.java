@@ -17,7 +17,7 @@ public class PersonController {
     @GetMapping("/springtest")
     public String savePerson() {
         PersonEntity person = new PersonEntity();
-        person.setId("testuser");
+        person.Id("testuser");
         person.setName("홍길동");
         person.setPassword("1234");
         person.setPhone("010-1234-5678");

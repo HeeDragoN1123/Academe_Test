@@ -1,8 +1,9 @@
 package net.datasa.web4.domain.GuestBook.Controller;
 
-import lombok.Data;
-import net.datasa.web4.domain.GuestBook.Entity.GuestBookEntity;
-import net.datasa.web4.domain.GuestBook.Repository.GuestBookRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import net.datasa.web4.domain.GuestBook.Dto.GuestBookDTO;
+import net.datasa.web4.domain.GuestBook.Service.GuestBookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,26 +11,25 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Data
+@Slf4j
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/guestbook")
 public class GuestBookController {
 
-    private final GuestBookRepository guestBookRepository;
+    private final GuestBookService guestBookService;
 
-    public GuestBookController(GuestBookRepository guestBookRepository) {
-        this.guestBookRepository = guestBookRepository;
-    }
-
+    // 1. 글쓰기 폼 보여주기 (GET)
     @GetMapping("/write")
     public String writeForm(Model model) {
-        model.addAttribute("guestbook", new GuestBookEntity());
-        return "write"; // 위 HTML 파일 이름
+        model.addAttribute("guestbook", new GuestBookDTO());
+        return "write"; // → templates/write.html
     }
 
-    @PostMapping("/save")
-    public String save(@ModelAttribute GuestBookEntity guestbook) {
-        guestBookRepository.save(guestbook);
-        return "redirect:/"; // 저장 후 목록 페이지로 이동
+    @PostMapping("/write")
+    public String write(@ModelAttribute GuestBookDTO dto) {
+        log.debug("작성한 글: {}", dto);
+        guestBookService.write(dto);
+        return "redirect:/";
     }
 }

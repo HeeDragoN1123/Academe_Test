@@ -15,24 +15,19 @@
 
 <h1>방명록 글쓰기</h1>
 
-<form th:action="@{/guestbook/save}" th:object="${guestbook}" method="post">
-  <p>
-    <label for="name">이름:</label>
-    <input type="text" id="name" th:field="*{name}" required>
-  </p>
+<form th:action="@{/guestbook/write}" method="post" th:object="${guestbook}">
+  <label for="name">이름:</label>
+  <input type="text" id="name" th:field="*{name}" /><br/>
 
-  <p>
-    <label for="password">비밀번호:</label>
-    <input type="password" id="password" th:field="*{password}" required>
-  </p>
+  <label for="password">비밀번호:</label>
+  <input type="password" id="password" th:field="*{password}" /><br/>
 
-  <p>
-    <label for="message">내용:</label><br>
-    <textarea id="message" th:field="*{message}" rows="5" cols="50" required></textarea>
-  </p>
+  <label for="message">내용:</label>
+  <textarea id="message" th:field="*{message}"></textarea><br/>
 
   <button type="submit">저장</button>
 </form>
+
 
 </body>
 </html>

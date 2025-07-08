@@ -9,11 +9,24 @@
 <h1>mysql 연결</h1>
 <h1>서버 연결</h1>
 
-<!-- 타임리프 예시 출력 -->
-<p th:text="'서버에서 받은 값: ' + ${msg}">기본 메시지</p>
+<!-- ✅ 방명록 리스트 출력 -->
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th><th>이름</th><th>내용</th><th>작성일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="entry : ${entries}">
+        <td th:text="${entry.id}">ID</td>
+        <td th:text="${entry.name}">이름</td>
+        <td th:text="${entry.message}">내용</td>
+        <td th:text="${entry.createdAt}">작성일</td>
+    </tr>
+    </tbody>
+</table>
 
-
+<!-- 글쓰기 링크 -->
 <a th:href="@{/guestbook/write}">글쓰기</a>
 
-</body>
-</html>
+<

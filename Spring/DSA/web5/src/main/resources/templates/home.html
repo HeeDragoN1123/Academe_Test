@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'web4 서버 연결'">web4 서버 연결</title>
+</head>
+<body>
+
+<h1>mysql 연결</h1>
+<h1>서버 연결</h1>
+
+<ul>
+    <li>
+        <a th:href="@{/signup}">회원가입</a>
+    </li>
+    <li>로그인</li>
+    <li>로그아웃</li>
+    <li>개인정보 수정</li>
+    <li>게시판</li>
+</ul>
+
+<!-- 또는, Spring Controller에서 /signup을 매핑했다면 -->
+<!-- <li><a th:href="@{/signup}">회원가입</a></li> -->
+
+</body>
+</html>

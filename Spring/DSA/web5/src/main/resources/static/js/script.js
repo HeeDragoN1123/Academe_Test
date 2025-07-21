@@ -11,7 +11,7 @@ $(function() {
             return;
         }
         $.ajax({
-            url: "/member/join",
+       url: "/member/idcheck",  // ← 여기를 수정!
             type: "GET",
             data: { memberId: memberId },
             success: function(isDuplicate) {

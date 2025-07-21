@@ -23,22 +23,46 @@ public class MemberController {
         return "signup";
     }
 
-    // 회원가입 POST
-    @PostMapping(PathContstants.MEMBER_SIGNUP)
-    public String processSignup(@ModelAttribute MemberDTO memberDTO) {
-        log.info("회원가입 요청: {}", memberDTO);
-        memberService.signup(memberDTO);
-        return "home";
-    }
-
-    // **회원 중복확인** (AJAX 등에서 사용)
-    @GetMapping(PathContstants.MEMBER_JOIN)
+    @GetMapping(PathContstants.MEMBER_IDCHECK)  // "/member/idcheck"로 변경
     @ResponseBody
     public boolean checkMemberDuplicate(@RequestParam String memberId) {
-        log.info("회원 중복 확인 요청: {}", memberId);
-        boolean isDuplicate = memberService.isMemberIdDuplicate(memberId);
-        return isDuplicate;
+        return memberService.isMemberIdDuplicate(memberId);
     }
 
+    @PostMapping(PathContstants.MEMBER_JOIN)  // POST는 "/member/join"으로
+    public String processSignup(@ModelAttribute MemberDTO memberDTO) {
+        memberService.signup(memberDTO);
+        return "redirect:/";
+    }
 
+    @GetMapping(PathContstants.MEMBER_LOGIN)
+    public String showLoginForm() {
+        return "signup"; // templates/login.html
+    }
+
+    @PostMapping(PathContstants.MEMBER_LOGIN)
+    public String processLogin(@RequestParam String memberId,
+                               @RequestParam String memberPassword) {
+        log.info("로그인 시도: {}", memberId);
+        boolean result = memberService.login(memberId, memberPassword);
+
+        if (result) {
+            log.info("로그인 성공");
+            // TODO: 세션처리, 홈 이동 등
+            return "redirect:/";
+        } else {
+            log.info("로그인 실패");
+            // TODO: 에러메시지, 로그인 페이지 재진입 등
+            return "redirect:/login";
+        }
+
+    }
+
+    @GetMapping(PathContstants.MEMBER_INFO)
+    public String proflieInfo() {
+        return "info"; // templates/login.html
+    }
+
+//    새로가입
+//    dbㄴ에서 강비한 데이터 직접 확인 비밀번호 암호화 확인
 }

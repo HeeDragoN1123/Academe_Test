@@ -13,6 +13,10 @@ public interface PathContstants {
 
     String MEMBER_JOIN = MEMBER + "/join";
 
+    String MEMBER_LOGIN = MEMBER + "/login";
+
+    String MEMBER_INFO = MEMBER + "/info";
+
     String BOARD = BASE + "board";
 
     String BOARD_WRITE = BOARD + "/write";
